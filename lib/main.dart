@@ -1,63 +1,59 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      title: 'Myapp',
-      home: MyScaffold()
-    )
-  );
+  runApp(MaterialApp(
+    title: 'Flutter Tutorial',
+    home: TutorialHome(),
+  ));
 }
 
-class MyAppBar extends StatelessWidget {
-  MyAppBar({this.title});
-  final Widget title;
-
+class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      height: 56.0,
-      decoration: BoxDecoration(color: Colors.blue[500]),
-      child: Row(
-        children: <Widget>[
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          tooltip: 'NavigationMenu',
+          onPressed: null,
+        ),
+        title: Text('Navigation menu'),
+        actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.menu),
-            tooltip: 'NavigationMenu',
-            onPressed: null,
-          ),
-          Expanded(
-            child: title,
-          ),
-          IconButton(
-            onPressed: null,
             icon: Icon(Icons.search),
             tooltip: 'Search',
+            onPressed: null,
           )
         ],
+      ),
+      body: Center(child: MyButton()),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add',
+        child: Icon(Icons.add),
+        onPressed: null,
       ),
     );
   }
 }
 
-class MyScaffold extends StatelessWidget {
+class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Column(
-        children: <Widget>[
-          MyAppBar(
-            title: Text(
-              'ExampleTitle',
-              style: Theme.of(context).primaryTextTheme.title,
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: Text('Hello World'),
-            ),
-          )
-        ],
+    return GestureDetector(
+      onTap: () {
+        print('My Button was tapped!');
+      },
+      child: Container(
+        height: 36.0,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.lightGreen[500],
+        ),
+        child: Center(
+          child: Text('Engage'),
+        ),
       ),
     );
   }
